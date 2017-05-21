@@ -19,9 +19,15 @@
 #include "louder-application.h"
 #include "louder-window.h"
 
+
+struct _LouderApplication
+{
+  GtkApplication parent;
+};
+
 typedef struct
 {
-GtkWidget b;
+
 } LouderApplicationPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (LouderApplication, louder_application, GTK_TYPE_APPLICATION)
@@ -82,6 +88,15 @@ louder_application_set_property (GObject      *object,
 }
 
 static void
+louder_application_activate (GApplication *app)
+{
+  LouderWindow *win;
+
+  win = louder_window_new ();
+  gtk_window_present (GTK_WINDOW (win));
+}
+
+static void
 louder_application_open (GApplication  *app,
                          GFile        **files,
                          gint           n_files,
@@ -102,6 +117,7 @@ louder_application_class_init (LouderApplicationClass *klass)
 
 	object_class->finalize = louder_application_finalize;
 	G_APPLICATION_CLASS (object_class)->open = louder_application_open;
+  	G_APPLICATION_CLASS (object_class)->activate = louder_application_activate;
 	object_class->get_property = louder_application_get_property;
 	object_class->set_property = louder_application_set_property;
 }
