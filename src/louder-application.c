@@ -92,8 +92,9 @@ louder_application_activate (GApplication *app)
 {
   LouderWindow *win;
 
-  win = louder_window_new ();
+  win = louder_window_new (app);
   gtk_window_present (GTK_WINDOW (win));
+  gtk_widget_show_all (GTK_WIDGET (win));
 }
 
 static void
@@ -105,7 +106,7 @@ louder_application_open (GApplication  *app,
 
   LouderWindow *louder_window;
 
-  louder_window = louder_window_new ();
+  louder_window = louder_window_new (app);
 
   gtk_window_present (GTK_WINDOW (louder_window));
 }

@@ -27,7 +27,7 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (LouderWindow, louder_window, LOUDER, WINDOW, GtkApplicationWindow)
 
-LouderWindow *louder_window_new (void);
+LouderWindow *louder_window_new (LouderApplication *app);
 
 G_END_DECLS
 

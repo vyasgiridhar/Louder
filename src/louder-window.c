@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "louder-application.h"
 #include "louder-window.h"
-
 
 struct _LouderWindow
 {
@@ -39,9 +39,9 @@ enum {
 static GParamSpec *properties [N_PROPS];
 
 LouderWindow *
-louder_window_new (void)
+louder_window_new (LouderApplication *app)
 {
-	return g_object_new (LOUDER_TYPE_WINDOW, NULL);
+	return g_object_new (LOUDER_TYPE_WINDOW, "application", app,NULL);
 }
 
 static void
