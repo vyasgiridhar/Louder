@@ -27,7 +27,7 @@ struct _LouderApplication
 
 typedef struct
 {
-
+  GtkWidget b;
 } LouderApplicationPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (LouderApplication, louder_application, GTK_TYPE_APPLICATION)

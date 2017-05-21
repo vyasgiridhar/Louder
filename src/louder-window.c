@@ -21,12 +21,12 @@
 
 struct _LouderWindow
 {
-  GtkApplication parent;
+  GtkApplicationWindow parent;
 };
 
 typedef struct
 {
-
+  GtkWidget *stack;
 } LouderWindowPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (LouderWindow, louder_window, GTK_TYPE_APPLICATION_WINDOW)

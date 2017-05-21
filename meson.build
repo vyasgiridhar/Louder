@@ -3,6 +3,8 @@ project('louder', 'c',
   meson_version: '>= 0.36.0',
 )
 
+gnome = import ('gnome')
+
 config_h = configuration_data()
 config_h.set_quoted('GETTEXT_PACKAGE', 'louder')
 config_h.set_quoted('LOCALEDIR', join_paths(get_option('prefix'), get_option('localedir')))
