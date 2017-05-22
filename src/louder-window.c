@@ -26,7 +26,9 @@ struct _LouderWindow
 
 typedef struct
 {
-  GtkWidget *stack;
+	GtkWidget *search;
+	GtkWidget *gears;
+	GSettings *settings;
 } LouderWindowPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (LouderWindow, louder_window, GTK_TYPE_APPLICATION_WINDOW)
@@ -54,10 +56,18 @@ louder_window_finalize (GObject *object)
 }
 
 static void
+search_text_changed (GtkEntry *entry)
+{
+  LouderWindow *win;
+  LouderWindowPrivate *priv;
+  const gchar *text;
+  win = LOUDER_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (entry)));
+}
+static void
 louder_window_get_property (GObject    *object,
-                            guint       prop_id,
-                            GValue     *value,
-                            GParamSpec *pspec)
+														guint       prop_id,
+														GValue     *value,
+														GParamSpec *pspec)
 {
 	LouderWindow *self = LOUDER_WINDOW (object);
 
@@ -86,7 +96,15 @@ louder_window_set_property (GObject      *object,
 static void
 louder_window_dispose (GObject *object)
 {
+LouderWindow *win;
+  LouderWindowPrivate *priv;
 
+  win = LOUDER_WINDOW (object);
+  priv = louder_window_get_instance_private (win);
+
+  g_clear_object (&priv->settings);
+
+  G_OBJECT_CLASS (louder_window_parent_class)->dispose (object);
 }
 static void
 louder_window_class_init (LouderWindowClass *klass)
@@ -94,14 +112,24 @@ louder_window_class_init (LouderWindowClass *klass)
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
 	gtk_widget_class_set_template_from_resource (GTK_WIDGET_CLASS (object_class),
-                                               	     "/org/vyasg/louder/ui/window.ui");
+																							 "/org/vyasg/louder/ui/window.ui");
 	object_class->finalize = louder_window_finalize;
 	object_class->get_property = louder_window_get_property;
 	object_class->set_property = louder_window_set_property;
+	gtk_widget_class_bind_template_child_private (GTK_WIDGET_CLASS (object_class), LouderWindow, search);
+	gtk_widget_class_bind_template_child_private (GTK_WIDGET_CLASS (object_class), LouderWindow, gears);
+
+	gtk_widget_class_bind_template_callback (GTK_WIDGET_CLASS (object_class), search_text_changed);
 }
 
 static void
 louder_window_init (LouderWindow *self)
 {
+	LouderWindowPrivate *priv;
+
+  priv = louder_window_get_instance_private (self);
 	gtk_widget_init_template (GTK_WIDGET (self));
+  //priv->settings = g_settings_new ("org.vyasg.louder");
+	gtk_window_maximize (GTK_WINDOW (self));
+
 }

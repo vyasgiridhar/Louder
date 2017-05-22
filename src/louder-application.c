@@ -27,7 +27,7 @@ struct _LouderApplication
 
 typedef struct
 {
-  GtkWidget b;
+  LouderWindow *window;
 } LouderApplicationPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (LouderApplication, louder_application, GTK_TYPE_APPLICATION)
@@ -92,9 +92,8 @@ louder_application_activate (GApplication *app)
 {
   LouderWindow *win;
 
-  win = louder_window_new (app);
+  win = louder_window_new (LOUDER_APPLICATION (app));
   gtk_window_present (GTK_WINDOW (win));
-  gtk_widget_show_all (GTK_WIDGET (win));
 }
 
 static void
@@ -106,7 +105,7 @@ louder_application_open (GApplication  *app,
 
   LouderWindow *louder_window;
 
-  louder_window = louder_window_new (app);
+  louder_window = louder_window_new (LOUDER_APPLICATION (app));
 
   gtk_window_present (GTK_WINDOW (louder_window));
 }
@@ -118,7 +117,7 @@ louder_application_class_init (LouderApplicationClass *klass)
 
 	object_class->finalize = louder_application_finalize;
 	G_APPLICATION_CLASS (object_class)->open = louder_application_open;
-  	G_APPLICATION_CLASS (object_class)->activate = louder_application_activate;
+	G_APPLICATION_CLASS (object_class)->activate = louder_application_activate;
 	object_class->get_property = louder_application_get_property;
 	object_class->set_property = louder_application_set_property;
 }
@@ -126,4 +125,5 @@ louder_application_class_init (LouderApplicationClass *klass)
 static void
 louder_application_init (LouderApplication *self)
 {
+
 }
