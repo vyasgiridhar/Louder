@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="LouderSidebarRow" parent="GtkListBoxRow">
+    <property name="visible">True</property>
+    <property name="margin-top">1</property>
+    <property name="margin-bottom">1</property>
+    <child>
+			<object class="GtkBox">
+				<property name="visible">True</property>
+				<property name="spacing">10</property>
+					<child>
+						<object class="GtkImage" id="icon_widget">
+							<property name="visible">1</property>
+							<property name="icon-size">6</property>
+						</object>
+					</child>
+					<child>
+						<object class="GtkLabel" id="label_widget">
+        			<property name="visible">1</property>
+        			<property name="hexpand">1</property>
+							<property name="label">YO</property>
+							<property name="xalign">0</property>
+      			</object>
+					</child>
+			</object>
+    </child>
+  </template>
+  <!-- We need it to not make the row smaller when the eject button is hidden -->
+</interface>
