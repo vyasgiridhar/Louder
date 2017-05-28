@@ -99,7 +99,6 @@ louder_sidebar_row_class_init (LouderSidebarRowClass *klass)
 	gtk_widget_class_bind_template_child_private (widget_class, LouderSidebarRow, label_widget);
 	gtk_widget_class_bind_template_child_private (widget_class, LouderSidebarRow, icon_widget);
 	//gtk_widget_class_bind_template_child_private (GTK_WIDGET_CLASS (object_class), LouderSidebarRow, );
-
 }
 
 static void

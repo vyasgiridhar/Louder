@@ -19,3 +19,4 @@ add_global_arguments([
 
 subdir('src')
 subdir('po')
+#subdir('libasyncimage')

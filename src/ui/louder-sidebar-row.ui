@@ -25,5 +25,4 @@
 			</object>
     </child>
   </template>
-  <!-- We need it to not make the row smaller when the eject button is hidden -->
 </interface>

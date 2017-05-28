@@ -3,6 +3,8 @@
   <gresource prefix="/org/vyasg/louder/ui">
     <file preprocess="xml-stripblanks">louder-window.ui</file>
     <file preprocess="xml-stripblanks">louder-sidebar-row.ui</file>
-		<file>playlist.png</file>
+	<file>playlist.png</file>
+	<file>css/louder.css</file>
+	<file>avatar.png</file>
   </gresource>
 </gresources>

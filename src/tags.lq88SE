@@ -1,0 +1,90 @@
+LOUDER_SIDEBAR_ROW_H	louder-sidebar-row.h	20;"	d
+LOUDER_TYPE_SIDEBAR_ROW	louder-sidebar-row.h	26;"	d
+_LouderSidebarRowClass	louder-sidebar-row.h	/^struct _LouderSidebarRowClass$/;"	s
+parent	louder-sidebar-row.h	/^	GtkListBoxRowClass parent;$/;"	m	struct:_LouderSidebarRowClass
+louder_sidebar_row_new	louder-sidebar-row.h	/^LouderSidebarRow *louder_sidebar_row_new (void);$/;"	p
+main	main.c	/^main (int    argc,$/;"	f
+LOUDER_WINDOW_H	louder-window.h	20;"	d
+LOUDER_TYPE_WINDOW	louder-window.h	26;"	d
+louder_window_new	louder-window.h	/^LouderWindow *louder_window_new (LouderApplication *app);$/;"	p
+LOUDER_APPLICATION_H	louder-application.h	20;"	d
+LOUDER_TYPE_APPLICATION	louder-application.h	26;"	d
+louder_application_new	louder-application.h	/^LouderApplication *louder_application_new (void);$/;"	p
+_LibAsyncImage	async-image-widget.c	/^struct _LibAsyncImage {$/;"	s	file:
+parent	async-image-widget.c	/^	GtkImage parent;$/;"	m	struct:_LibAsyncImage	file:
+image_surface	async-image-widget.c	/^	cairo_surface_t *image_surface;$/;"	m	struct:__anon1	file:
+url	async-image-widget.c	/^	gchar			*url;$/;"	m	struct:__anon1	file:
+session	async-image-widget.c	/^	SoupSession		*session;$/;"	m	struct:__anon1	file:
+LibAsyncImagePrivate	async-image-widget.c	/^} LibAsyncImagePrivate;$/;"	t	typeref:struct:__anon1	file:
+G_DEFINE_TYPE_WITH_PRIVATE	async-image-widget.c	/^G_DEFINE_TYPE_WITH_PRIVATE (LibAsyncImage, lib_async_image, GTK_TYPE_IMAGE)$/;"	f
+properties	async-image-widget.c	/^static GParamSpec *properties [N_PROPS];$/;"	v	file:
+lib_async_image_new	async-image-widget.c	/^lib_async_image_new (void)$/;"	f
+lib_async_image_finalize	async-image-widget.c	/^lib_async_image_finalize (GObject *object)$/;"	f	file:
+lib_async_image_get_property	async-image-widget.c	/^lib_async_image_get_property (GObject    *object,$/;"	f	file:
+lib_async_image_set_property	async-image-widget.c	/^lib_async_image_set_property (GObject      *object,$/;"	f	file:
+lib_async_image_class_init	async-image-widget.c	/^lib_async_image_class_init (LibAsyncImageClass *klass)$/;"	f	file:
+lib_async_image_init	async-image-widget.c	/^lib_async_image_init (LibAsyncImage *self)$/;"	f	file:
+_LouderApplication	louder-application.c	/^struct _LouderApplication$/;"	s	file:
+parent	louder-application.c	/^  GtkApplication parent;$/;"	m	struct:_LouderApplication	file:
+window	louder-application.c	/^  LouderWindow *window;$/;"	m	struct:__anon2	file:
+LouderApplicationPrivate	louder-application.c	/^} LouderApplicationPrivate;$/;"	t	typeref:struct:__anon2	file:
+G_DEFINE_TYPE_WITH_PRIVATE	louder-application.c	/^G_DEFINE_TYPE_WITH_PRIVATE (LouderApplication, louder_application, GTK_TYPE_APPLICATION)$/;"	f
+properties	louder-application.c	/^static GParamSpec *properties [N_PROPS];$/;"	v	file:
+louder_application_new	louder-application.c	/^louder_application_new (void)$/;"	f
+louder_application_finalize	louder-application.c	/^louder_application_finalize (GObject *object)$/;"	f	file:
+louder_application_get_property	louder-application.c	/^louder_application_get_property (GObject    *object,$/;"	f	file:
+louder_application_set_property	louder-application.c	/^louder_application_set_property (GObject      *object,$/;"	f	file:
+louder_application_activate	louder-application.c	/^louder_application_activate (GApplication *app)$/;"	f	file:
+louder_application_open	louder-application.c	/^louder_application_open (GApplication  *app,$/;"	f	file:
+louder_application_class_init	louder-application.c	/^louder_application_class_init (LouderApplicationClass *klass)$/;"	f	file:
+louder_application_init	louder-application.c	/^louder_application_init (LouderApplication *self)$/;"	f	file:
+_LouderWindow	louder-window.c	/^struct _LouderWindow$/;"	s	file:
+parent	louder-window.c	/^  GtkApplicationWindow parent;$/;"	m	struct:_LouderWindow	file:
+search	louder-window.c	/^	GtkWidget *search;$/;"	m	struct:__anon3	file:
+gears	louder-window.c	/^	GtkWidget *gears;$/;"	m	struct:__anon3	file:
+profile_picture	louder-window.c	/^	GtkWidget *profile_picture;$/;"	m	struct:__anon3	file:
+menu_panel	louder-window.c	/^	GtkWidget *menu_panel;$/;"	m	struct:__anon3	file:
+sidebar_menu	louder-window.c	/^	GtkWidget *sidebar_menu;$/;"	m	struct:__anon3	file:
+settings	louder-window.c	/^	GSettings *settings;$/;"	m	struct:__anon3	file:
+LouderWindowPrivate	louder-window.c	/^} LouderWindowPrivate;$/;"	t	typeref:struct:__anon3	file:
+G_DEFINE_TYPE_WITH_PRIVATE	louder-window.c	/^G_DEFINE_TYPE_WITH_PRIVATE (LouderWindow, louder_window, GTK_TYPE_APPLICATION_WINDOW)$/;"	f
+properties	louder-window.c	/^static GParamSpec *properties [N_PROPS];$/;"	v	file:
+louder_window_new	louder-window.c	/^louder_window_new (LouderApplication *app)$/;"	f
+louder_window_finalize	louder-window.c	/^louder_window_finalize (GObject *object)$/;"	f	file:
+AddListItem	louder-window.c	/^void AddListItem (GtkWidget *listbox)$/;"	f
+louder_window_get_property	louder-window.c	/^louder_window_get_property (GObject    *object,$/;"	f	file:
+louder_window_set_profile_picture	louder-window.c	/^louder_window_set_profile_picture(LouderWindow *self) {$/;"	f	file:
+louder_window_set_property	louder-window.c	/^louder_window_set_property (GObject      *object,$/;"	f	file:
+louder_window_dispose	louder-window.c	/^louder_window_dispose (GObject *object)$/;"	f	file:
+louder_window_class_init	louder-window.c	/^louder_window_class_init (LouderWindowClass *klass)$/;"	f	file:
+louder_window_init	louder-window.c	/^louder_window_init (LouderWindow *self)$/;"	f	file:
+_LouderSidebarRow	louder-sidebar-row.c	/^struct _LouderSidebarRow$/;"	s	file:
+parent	louder-sidebar-row.c	/^	GtkListBoxRow parent;$/;"	m	struct:_LouderSidebarRow	file:
+label_widget	louder-sidebar-row.c	/^	GtkWidget *label_widget;$/;"	m	struct:__anon4	file:
+icon_widget	louder-sidebar-row.c	/^	GtkWidget *icon_widget;$/;"	m	struct:__anon4	file:
+LouderSidebarRowPrivate	louder-sidebar-row.c	/^} LouderSidebarRowPrivate;$/;"	t	typeref:struct:__anon4	file:
+G_DEFINE_TYPE_WITH_PRIVATE	louder-sidebar-row.c	/^G_DEFINE_TYPE_WITH_PRIVATE (LouderSidebarRow, louder_sidebar_row, GTK_TYPE_LIST_BOX_ROW)$/;"	f
+properties	louder-sidebar-row.c	/^static GParamSpec *properties [N_PROPS];$/;"	v	file:
+louder_sidebar_row_new	louder-sidebar-row.c	/^louder_sidebar_row_new (void)$/;"	f
+louder_sidebar_row_finalize	louder-sidebar-row.c	/^louder_sidebar_row_finalize (GObject *object)$/;"	f	file:
+louder_sidebar_row_get_property	louder-sidebar-row.c	/^louder_sidebar_row_get_property (GObject    *object,$/;"	f	file:
+louder_sidebar_row_set_property	louder-sidebar-row.c	/^louder_sidebar_row_set_property (GObject      *object,$/;"	f	file:
+louder_sidebar_row_class_init	louder-sidebar-row.c	/^louder_sidebar_row_class_init (LouderSidebarRowClass *klass)$/;"	f	file:
+louder_sidebar_row_init	louder-sidebar-row.c	/^louder_sidebar_row_init (LouderSidebarRow *self)$/;"	f	file:
+_LouderSongListRow	louder-song-list-row.c	/^struct _LouderSongListRow$/;"	s	file:
+parent	louder-song-list-row.c	/^	GtkListBoxRow parent;$/;"	m	struct:_LouderSongListRow	file:
+LouderSongListRowPrivate	louder-song-list-row.c	/^} LouderSongListRowPrivate;$/;"	t	typeref:struct:__anon5	file:
+G_DEFINE_TYPE_WITH_PRIVATE	louder-song-list-row.c	/^G_DEFINE_TYPE_WITH_PRIVATE (LouderSongListRow, louder_song_list_row, GTK_TYPE_LIST_BOX_ROW)$/;"	f
+properties	louder-song-list-row.c	/^static GParamSpec *properties [N_PROPS];$/;"	v	file:
+louder_song_list_row_new	louder-song-list-row.c	/^louder_song_list_row_new (void)$/;"	f
+louder_song_list_row_finalize	louder-song-list-row.c	/^louder_song_list_row_finalize (GObject *object)$/;"	f	file:
+louder_song_list_row_get_property	louder-song-list-row.c	/^louder_song_list_row_get_property (GObject    *object,$/;"	f	file:
+louder_song_list_row_set_property	louder-song-list-row.c	/^louder_song_list_row_set_property (GObject      *object,$/;"	f	file:
+louder_song_list_row_class_init	louder-song-list-row.c	/^louder_song_list_row_class_init (LouderSongListRowClass *klass)$/;"	f	file:
+louder_song_list_row_init	louder-song-list-row.c	/^louder_song_list_row_init (LouderSongListRow *self)$/;"	f	file:
+ASYNC_IMAGE_WIDGET_H	async-image-widget.h	20;"	d
+ASYNC_TYPE_IMAGE_WIDGET	async-image-widget.h	26;"	d
+async_image_widget_new	async-image-widget.h	/^AsyncImageWidget *async_image_widget_new (void);$/;"	p
+LOUDER_SONG_LIST_ROW_H	louder-song-list-row.h	20;"	d
+LOUDER_TYPE_SONG_LIST_ROW	louder-song-list-row.h	26;"	d
+louder_song_list_row_new	louder-song-list-row.h	/^LouderSongListRow *louder_song_list_row_new (void);$/;"	p
