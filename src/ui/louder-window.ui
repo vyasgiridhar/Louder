@@ -30,7 +30,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkPaned" id="menu_panel">
+			<object class="GtkPaned" id="menu_panel">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="position">300</property>
@@ -40,15 +40,16 @@
                 <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkImage" id="profile_picture">
-                    <property name="visible">True</property>
-                    <style>
+                  <object class="AsyncImageWidget" id="avatar">
+					  <property name="visible">True</property>
+					  <property name="halign">center</property>
+					<style>
                       <class name="louder-profile-picture"/>
                     </style>
-                  </object>
+				  </object>
                   <packing>
                     <property name="position">0</property>
-										<property name="expand">False</property>
+					<property name="expand">False</property>
                   </packing>
                 </child>
                 <child>

@@ -31,6 +31,7 @@ G_DECLARE_FINAL_TYPE (AsyncImageWidget, async_image_widget, ASYNC, IMAGE_WIDGET,
 
 AsyncImageWidget *async_image_widget_new (gchar *url);
 
+gboolean		  async_image_widget_add_callback (AsyncImageWidget *widget, void (*transform)(GtkWidget*,cairo_t*));
 G_END_DECLS
 
 #endif /* ASYNC_IMAGE_WIDGET_H */
