@@ -36,7 +36,7 @@ typedef struct
 {
 	GtkWidget		 *search;
 	GtkWidget		 *gears;
-	AsyncImageWidget *avatar;
+	LouderAvatarWidget *avatar;
 	GtkWidget		 *menu_panel;
 	GtkWidget		 *sidebar_menu;
 	GSettings		 *settings;
@@ -125,12 +125,13 @@ louder_window_class_init (LouderWindowClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 	
-	g_type_ensure (ASYNC_TYPE_IMAGE_WIDGET);
+	g_type_ensure (LOUDER_TYPE_AVATAR_WIDGET);
 	gtk_widget_class_set_template_from_resource (GTK_WIDGET_CLASS (object_class),
 												 "/org/vyasg/louder/ui/louder-window.ui");
 	object_class->finalize = louder_window_finalize;
 	object_class->get_property = louder_window_get_property;
 	object_class->set_property = louder_window_set_property;
+	object_class->dispose = louder_window_dispose;
 	gtk_widget_class_bind_template_child_private (GTK_WIDGET_CLASS (object_class), LouderWindow, search);
 	gtk_widget_class_bind_template_child_private (GTK_WIDGET_CLASS (object_class), LouderWindow, gears);
 	gtk_widget_class_bind_template_child_private (GTK_WIDGET_CLASS (object_class), LouderWindow, menu_panel);
@@ -139,31 +140,18 @@ louder_window_class_init (LouderWindowClass *klass)
 	//gtk_widget_class_bind_template_callback (GTK_WIDGET_CLASS (object_class), search_text_changed);
 }
 
-void
-louder_round_avatar (GtkWidget *widget, cairo_t *cr)
-{
-	GdkPixbuf *default_image = gdk_pixbuf_new_from_resource ("/org/vyasg/louder/ui/avatar.png",NULL);
-	cairo_surface_t *surface = gdk_cairo_surface_create_from_pixbuf (default_image, 1, NULL);
-	cairo_set_source_surface(cr, surface, 1, 1);
-//	cairo_arc(cr, /*x*/ 100, /* y */ 100, /* radius */ 100, 0, 2*M_PI);
-	g_debug ("%s","HASDASDASD");
-//	cairo_clip(cr);
-//	cairo_paint(cr);
-}
-
 static void
 louder_window_init (LouderWindow *self)
 {
-	LouderWindowPrivate *priv;
+	LouderWindowPrivate *priv = louder_window_get_instance_private (self);
 
-  priv = louder_window_get_instance_private (self);
 	gtk_widget_init_template (GTK_WIDGET (self));
-  //priv->settings = g_settings_new ("org.vyasg.louder");
+	//priv->settings = g_settings_new ("org.vyasg.louder");
 
 	AddListItem (priv->sidebar_menu);
 	AddListItem (priv->sidebar_menu);
-	async_image_widget_add_callback (priv->avatar, &louder_round_avatar);
 	gtk_window_maximize (GTK_WINDOW (self));
+
 	gtk_paned_set_position (GTK_PANED (priv->menu_panel), 300);
 	gtk_widget_show_all (GTK_WIDGET (self));
 }

@@ -40,7 +40,7 @@
                 <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="AsyncImageWidget" id="avatar">
+                  <object class="LouderAvatarWidget" id="avatar">
 					  <property name="visible">True</property>
 					  <property name="halign">center</property>
 					<style>

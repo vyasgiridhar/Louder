@@ -22,70 +22,59 @@
 	#define M_PI   3.14159265358979323846264338327950288
 #endif
 
-struct _AsyncImageWidget {
+struct _LouderAvatarWidget {
 	GtkImage parent;
 };
 
 typedef struct
 {
-	gint padding;
-	
 	gchar *url;
+	int width;
+	int height;
 
 	cairo_surface_t *surface;
 
 	SoupSession *session;
 	GSList *callbacks;
 
-} AsyncImageWidgetPrivate;
+} LouderAvatarWidgetPrivate;
 
-G_DEFINE_TYPE_WITH_PRIVATE (AsyncImageWidget, async_image_widget, GTK_TYPE_IMAGE)
+G_DEFINE_TYPE_WITH_PRIVATE (LouderAvatarWidget, louder_avatar_widget, GTK_TYPE_IMAGE)
 
 enum {
+	PROP_0,
 	PROP_URL,
 	N_PROPS
 };
 
 static GParamSpec *properties [N_PROPS];
 
-AsyncImageWidget*
-async_image_widget_new (gchar *url)
+LouderAvatarWidget*
+louder_avatar_widget_new (gchar *url)
 {
-	return g_object_new (ASYNC_TYPE_IMAGE_WIDGET,
+	return g_object_new (LOUDER_TYPE_AVATAR_WIDGET,
 						 "url",
 						 url,
 						 NULL);
 }
 
-gboolean
-async_image_widget_add_callback (AsyncImageWidget *self, void (*transform)(GtkWidget*,cairo_t*))
+static void
+louder_avatar_widget_finalize (GObject *object)
 {
-	g_return_val_if_fail (ASYNC_IS_IMAGE_WIDGET (self), FALSE);
-
-	AsyncImageWidgetPrivate *priv = async_image_widget_get_instance_private (self);
-
-	priv->callbacks = g_slist_prepend (priv->callbacks,transform);
-
-	return TRUE;
+	LouderAvatarWidget *self = (LouderAvatarWidget *)object;
+	LouderAvatarWidgetPrivate *priv = louder_avatar_widget_get_instance_private (self);
+	cairo_surface_destroy (priv->surface);
+	G_OBJECT_CLASS (louder_avatar_widget_parent_class)->finalize (object);
 }
 
 static void
-async_image_widget_finalize (GObject *object)
-{
-	AsyncImageWidget *self = (AsyncImageWidget *)object;
-	AsyncImageWidgetPrivate *priv = async_image_widget_get_instance_private (self);
-
-	G_OBJECT_CLASS (async_image_widget_parent_class)->finalize (object);
-}
-
-static void
-async_image_widget_get_property (GObject    *object,
+louder_avatar_widget_get_property (GObject    *object,
                                  guint       prop_id,
                                  GValue     *value,
                                  GParamSpec *pspec)
 {
-	AsyncImageWidget *self = ASYNC_IMAGE_WIDGET (object);
-	AsyncImageWidgetPrivate *priv = async_image_widget_get_instance_private (self);
+	LouderAvatarWidget *self = LOUDER_AVATAR_WIDGET (object);
+	LouderAvatarWidgetPrivate *priv = louder_avatar_widget_get_instance_private (self);
 
 	switch (prop_id)
 	  {
@@ -98,14 +87,14 @@ async_image_widget_get_property (GObject    *object,
 }
 
 static void
-async_image_widget_set_property (GObject      *object,
+louder_avatar_widget_set_property (GObject      *object,
                                  guint         prop_id,
                                  const GValue *value,
                                  GParamSpec   *pspec)
 {
-	AsyncImageWidget *self = ASYNC_IMAGE_WIDGET (object);
-	AsyncImageWidgetPrivate *priv = async_image_widget_get_instance_private (self);
-	
+	LouderAvatarWidget *self = LOUDER_AVATAR_WIDGET (object);
+	LouderAvatarWidgetPrivate *priv = louder_avatar_widget_get_instance_private (self);
+
 	switch (prop_id)
 	  {
 		  case PROP_URL:
@@ -117,46 +106,45 @@ async_image_widget_set_property (GObject      *object,
 }
 
 static gboolean
-async_image_widget_draw (GtkWidget *widget, cairo_t *cr)
+louder_avatar_widget_draw (GtkWidget *widget, cairo_t *cr)
 {	
-/*	AsyncImageWidgetPrivate *priv = async_image_widget_get_instance_private (ASYNC_IMAGE_WIDGET (widget));
-	GSList *iter;
-	g_debug ("%d",g_slist_length (priv->callbacks));
-	for (iter = priv->callbacks; iter != NULL; iter = iter->next)
-	{
-		void (*callback)(GtkWidget*,cairo_t*) = iter->data;
-		(*callback) (widget,cr);
-	}
-*/
-	GdkPixbuf *default_image = gdk_pixbuf_new_from_resource ("/org/vyasg/louder/ui/avatar.png",NULL);
-	cairo_surface_t *surface = gdk_cairo_surface_create_from_pixbuf (default_image, 1, NULL);
-	cairo_set_source_surface(cr, surface, 1, 1);
+	LouderAvatarWidgetPrivate *priv = louder_avatar_widget_get_instance_private (LOUDER_AVATAR_WIDGET (widget));
+
+	GdkPixbuf *default_image;
+	cairo_surface_t *surface;
+	default_image = gdk_pixbuf_new_from_resource ("/org/vyasg/louder/ui/andrew.png",NULL);
+	surface = gdk_cairo_surface_create_from_pixbuf (default_image, 1, NULL);
+	cairo_set_source_surface (cr, surface, 1, 1);
 	cairo_arc(cr, /*x*/ 100, /* y */ 100, /* radius */ 100, 0, 2*M_PI);
-	g_debug ("%s","HASDASDASD");
 	cairo_clip(cr);
 	cairo_paint(cr);
+	cairo_surface_destroy (surface);
 	return FALSE;
 }
+
 static void
-async_image_widget_class_init (AsyncImageWidgetClass *klass)
+louder_avatar_widget_class_init (LouderAvatarWidgetClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-	object_class->finalize = async_image_widget_finalize;
-	object_class->get_property = async_image_widget_get_property;
-	object_class->set_property = async_image_widget_set_property;
+	object_class->finalize = louder_avatar_widget_finalize;
+	object_class->get_property = louder_avatar_widget_get_property;
+	object_class->set_property = louder_avatar_widget_set_property;
 
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-	widget_class->draw = async_image_widget_draw;
+	widget_class->draw = louder_avatar_widget_draw;
 }
 
 static void
-async_image_widget_init (AsyncImageWidget *self)
+louder_avatar_widget_init (LouderAvatarWidget *self)
 {
-	AsyncImageWidgetPrivate *priv = async_image_widget_get_instance_private (self);
-
+	LouderAvatarWidgetPrivate *priv = louder_avatar_widget_get_instance_private (self);
 	priv->url = "";
+	priv->height = priv->width = 200;
+	priv->surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, priv->width, priv->height);
+	gtk_image_set_from_surface (GTK_IMAGE (self), priv->surface);
+	/*This sets the template size TODO: I need to change this to the proper way*/
+//	gtk_image_set_from_resource (GTK_IMAGE (self), "/org/vyasg/louder/ui/avatar.png");
 	priv->session = soup_session_new ();
 	priv->callbacks = NULL;
-	gtk_widget_show_all (GTK_WIDGET (self));
 }

@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ASYNC_IMAGE_WIDGET_H
-#define ASYNC_IMAGE_WIDGET_H
+#ifndef LOUDER_AVATAR_WIDGET_H
+#define LOUDER_AVATAR_WIDGET_H
 
 #include <gtk/gtk.h>
 #include <cairo.h>
@@ -25,14 +25,13 @@
 
 G_BEGIN_DECLS
 
-#define ASYNC_TYPE_IMAGE_WIDGET (async_image_widget_get_type())
+#define LOUDER_TYPE_AVATAR_WIDGET (louder_avatar_widget_get_type())
 
-G_DECLARE_FINAL_TYPE (AsyncImageWidget, async_image_widget, ASYNC, IMAGE_WIDGET, GtkImage)
+G_DECLARE_FINAL_TYPE (LouderAvatarWidget, louder_avatar_widget, LOUDER, AVATAR_WIDGET, GtkImage)
 
-AsyncImageWidget *async_image_widget_new (gchar *url);
+LouderAvatarWidget *louder_avatar_widget_new (gchar *url);
 
-gboolean		  async_image_widget_add_callback (AsyncImageWidget *widget, void (*transform)(GtkWidget*,cairo_t*));
 G_END_DECLS
 
-#endif /* ASYNC_IMAGE_WIDGET_H */
+#endif /* LOUDER_AVATAR_WIDGET_H */
 
