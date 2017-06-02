@@ -111,6 +111,18 @@ louder_application_open (GApplication  *app,
 }
 
 static void
+louder_application_startup (GApplication *gapplication)
+{
+	GdkScreen *screen;
+	GtkCssProvider *provider;
+  
+	screen = gdk_screen_get_default ();
+  provider = gtk_css_provider_new ();
+  gtk_css_provider_load_from_resource (provider, "/org/vyasg/louder/ui/css/louder.css");
+  gtk_style_context_add_provider_for_screen (screen, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+}
+
+static void
 louder_application_class_init (LouderApplicationClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
@@ -118,6 +130,7 @@ louder_application_class_init (LouderApplicationClass *klass)
 	object_class->finalize = louder_application_finalize;
 	G_APPLICATION_CLASS (object_class)->open = louder_application_open;
 	G_APPLICATION_CLASS (object_class)->activate = louder_application_activate;
+//	G_APPLICATION_CLASS (object_class)->startup = louder_application_startup;
 	object_class->get_property = louder_application_get_property;
 	object_class->set_property = louder_application_set_property;
 }

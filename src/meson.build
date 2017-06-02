@@ -4,7 +4,7 @@ louder_sources = [
   'louder-application.c',
   'louder-sidebar-row.c',
   'louder-song-list-row.c',
-  'async-image-widget.c',
+  'louder-avatar-widget.c',
 ]
 
 louder_deps = [

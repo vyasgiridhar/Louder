@@ -17,6 +17,7 @@
 */
 
 #include "louder-song-list-row.h"
+#include "louder-avatar-widget.h"
 
 struct _LouderSongListRow
 {
@@ -25,7 +26,14 @@ struct _LouderSongListRow
 
 typedef struct
 {
-
+	LouderAvatarWidget *avatar;
+	GtkWidget          *song_label;
+	GtkWidget          *song_time;
+	GtkWidget          *like_button;
+	GtkWidget          *options_button;
+	GtkWidget          *options_popover;
+	
+//	SCSong             *song;
 } LouderSongListRowPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (LouderSongListRow, louder_song_list_row, GTK_TYPE_LIST_BOX_ROW)
@@ -91,11 +99,15 @@ louder_song_list_row_class_init (LouderSongListRowClass *klass)
 	object_class->get_property = louder_song_list_row_get_property;
 	object_class->set_property = louder_song_list_row_set_property;
 
+	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
+	gtk_widget_class_set_template_from_resource (widget_class, "org/vyasg/louder/ui/louder-song-list-row.ui");
+	
 }
 
 static void
 louder_song_list_row_init (LouderSongListRow *self)
 {
 	gtk_widget_init_template (GTK_WIDGET (self));
+	gtk_widget_show_all (GTK_WIDGET (self));
 }

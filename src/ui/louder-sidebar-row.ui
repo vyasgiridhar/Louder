@@ -1,28 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.20.0 -->
 <interface>
+  <requires lib="gtk+" version="3.20"/>
   <template class="LouderSidebarRow" parent="GtkListBoxRow">
     <property name="visible">True</property>
-    <property name="margin-top">1</property>
-    <property name="margin-bottom">1</property>
+    <property name="can_focus">False</property>
+    <property name="margin_top">1</property>
+    <property name="margin_bottom">1</property>
     <child>
-			<object class="GtkBox">
-				<property name="visible">True</property>
-				<property name="spacing">10</property>
-					<child>
-						<object class="GtkImage" id="icon_widget">
-							<property name="visible">1</property>
-							<property name="icon-size">6</property>
-						</object>
-					</child>
-					<child>
-						<object class="GtkLabel" id="label_widget">
-        			<property name="visible">1</property>
-        			<property name="hexpand">1</property>
-							<property name="label">YO</property>
-							<property name="xalign">0</property>
-      			</object>
-					</child>
-			</object>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="spacing">10</property>
+        <child>
+          <object class="GtkImage" id="icon_widget">
+            <property name="can_focus">False</property>
+            <property name="icon_size">6</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="label_widget">
+            <property name="can_focus">False</property>
+            <property name="hexpand">False</property>
+            <property name="label">YO</property>
+            <property name="xalign">0</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
     </child>
   </template>
 </interface>

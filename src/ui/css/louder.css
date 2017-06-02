@@ -1,0 +1,8 @@
+.avatar-widget {
+  border: 10px solid grey;
+  border-radius: 48px;
+}
+
+label {
+	padding: 7px;
+}

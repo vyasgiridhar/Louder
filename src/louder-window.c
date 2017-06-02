@@ -20,12 +20,7 @@
 #include "louder-window.h"
 #include "louder-sidebar-row.h"
 #include "louder-song-list-row.h"
-#include "async-image-widget.h"
-
-
-#ifndef M_PI
-	#define M_PI   3.14159265358979323846264338327950288
-#endif
+#include "louder-avatar-widget.h"
 
 struct _LouderWindow
 {
@@ -34,12 +29,13 @@ struct _LouderWindow
 
 typedef struct
 {
-	GtkWidget		 *search;
-	GtkWidget		 *gears;
+	GtkWidget					 *search;
+	GtkWidget					 *gears;
 	LouderAvatarWidget *avatar;
-	GtkWidget		 *menu_panel;
-	GtkWidget		 *sidebar_menu;
-	GSettings		 *settings;
+	GtkWidget					 *menu_panel;
+	GtkWidget					 *sidebar_menu;
+	GSettings					 *settings;
+//SCUser						 *user;
 } LouderWindowPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (LouderWindow, louder_window, GTK_TYPE_APPLICATION_WINDOW)
