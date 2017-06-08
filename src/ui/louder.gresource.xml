@@ -2,10 +2,18 @@
 <gresources>
   <gresource prefix="/org/vyasg/louder/ui">
     <file preprocess="xml-stripblanks">louder-window.ui</file>
-    <file preprocess="xml-stripblanks">louder-sidebar-row.ui</file>
-	<file>playlist.png</file>
-	<file>css/louder.css</file>
-	<file>avatar.png</file>
-	<file>andrew.png</file>
+		<file preprocess="xml-stripblanks">louder-sidebar-row.ui</file>
+		<file preprocess="xml-stripblanks">louder-player-bar.ui</file>
+		<file>volume.png</file>
+		<file>playlist.png</file>
+		<file>repeat-track-inactive.svg</file>
+		<file>song_art.jpg</file>
+		<file>next.svg</file>
+		<file>pause.svg</file>
+		<file>previous.svg</file>
+		<file>play.svg</file>
+		<file>css/louder.css</file>
+		<file>avatar.png</file>
+		<file>andrew.png</file>
   </gresource>
 </gresources>

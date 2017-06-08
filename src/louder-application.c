@@ -111,8 +111,12 @@ louder_application_open (GApplication  *app,
 }
 
 static void
-louder_application_startup (GApplication *gapplication)
+louder_application_startup (GApplication *self)
 {
+	/* chain up to the GTK+ implementation early, so gtk_init()
+   * is called for us.
+   */
+	G_APPLICATION_CLASS (louder_application_parent_class)->startup (G_APPLICATION (self));
 	GdkScreen *screen;
 	GtkCssProvider *provider;
   
@@ -130,7 +134,7 @@ louder_application_class_init (LouderApplicationClass *klass)
 	object_class->finalize = louder_application_finalize;
 	G_APPLICATION_CLASS (object_class)->open = louder_application_open;
 	G_APPLICATION_CLASS (object_class)->activate = louder_application_activate;
-//	G_APPLICATION_CLASS (object_class)->startup = louder_application_startup;
+	G_APPLICATION_CLASS (object_class)->startup = louder_application_startup;
 	object_class->get_property = louder_application_get_property;
 	object_class->set_property = louder_application_set_property;
 }

@@ -21,6 +21,8 @@
 #include "louder-sidebar-row.h"
 #include "louder-song-list-row.h"
 #include "louder-avatar-widget.h"
+#include "louder-song-list-box.h"
+#include "louder-player-bar.h"
 
 struct _LouderWindow
 {
@@ -35,6 +37,8 @@ typedef struct
 	GtkWidget					 *menu_panel;
 	GtkWidget					 *sidebar_menu;
 	GSettings					 *settings;
+	LouderSongListBox  *song_box;
+	LouderPlayerBar    *player_bar;
 //SCUser						 *user;
 } LouderWindowPrivate;
 
@@ -120,19 +124,26 @@ static void
 louder_window_class_init (LouderWindowClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-	
+
+	/* Ensure Custom Widgets */	
 	g_type_ensure (LOUDER_TYPE_AVATAR_WIDGET);
+	g_type_ensure (LOUDER_TYPE_SONG_LIST_BOX);
+	g_type_ensure (LOUDER_TYPE_PLAYER_BAR);
+
 	gtk_widget_class_set_template_from_resource (GTK_WIDGET_CLASS (object_class),
-												 "/org/vyasg/louder/ui/louder-window.ui");
+																							 "/org/vyasg/louder/ui/louder-window.ui");
+
 	object_class->finalize = louder_window_finalize;
 	object_class->get_property = louder_window_get_property;
 	object_class->set_property = louder_window_set_property;
 	object_class->dispose = louder_window_dispose;
+
 	gtk_widget_class_bind_template_child_private (GTK_WIDGET_CLASS (object_class), LouderWindow, search);
 	gtk_widget_class_bind_template_child_private (GTK_WIDGET_CLASS (object_class), LouderWindow, gears);
 	gtk_widget_class_bind_template_child_private (GTK_WIDGET_CLASS (object_class), LouderWindow, menu_panel);
 	gtk_widget_class_bind_template_child_private (GTK_WIDGET_CLASS (object_class), LouderWindow, sidebar_menu);
 	gtk_widget_class_bind_template_child_private (GTK_WIDGET_CLASS (object_class), LouderWindow, avatar);
+	gtk_widget_class_bind_template_child_private (GTK_WIDGET_CLASS (object_class), LouderWindow, player_bar);
 	//gtk_widget_class_bind_template_callback (GTK_WIDGET_CLASS (object_class), search_text_changed);
 }
 
@@ -146,8 +157,7 @@ louder_window_init (LouderWindow *self)
 
 	AddListItem (priv->sidebar_menu);
 	AddListItem (priv->sidebar_menu);
-	gtk_window_maximize (GTK_WINDOW (self));
-
+	gtk_window_set_title (GTK_WINDOW (self), "Louder");
 	gtk_paned_set_position (GTK_PANED (priv->menu_panel), 300);
 	gtk_widget_show_all (GTK_WIDGET (self));
 }

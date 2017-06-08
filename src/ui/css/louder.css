@@ -1,8 +1,7 @@
-.avatar-widget {
-  border: 10px solid grey;
-  border-radius: 48px;
+.sidebar_label {
+	padding: 7px;
 }
 
-label {
+.icon_padding {
 	padding: 7px;
 }

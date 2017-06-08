@@ -19,12 +19,12 @@
 #include "louder-song-list-box.h"
 
 struct _LouderSongListBox {
-
+	GtkListBox parent;
 };
 
 typedef struct
 {
-
+	GtkStack *place_holder;
 } LouderSongListBoxPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (LouderSongListBox, louder_song_list_box, GTK_TYPE_LIST_BOX)
@@ -82,17 +82,18 @@ louder_song_list_box_set_property (GObject      *object,
 }
 
 static void
-louder_song_list_add_place_holder ()
+louder_song_list_add_place_holder (LouderSongListBox *self)
 {
-	GtkStack *place_holder = GTK_STACK (gtk_stack_new ());
-	gtk_stack_set_transition_type (place_holder, GTK_STACK_TRANSITION_TYPE_CROSSFADE);
+	LouderSongListBoxPrivate *priv = louder_song_list_box_get_instance_private (self);	
+	priv->place_holder = GTK_STACK (gtk_stack_new ());
+	gtk_stack_set_transition_type (priv->place_holder, GTK_STACK_TRANSITION_TYPE_CROSSFADE);
 	GtkLabel *loading_label = GTK_LABEL (gtk_label_new ("Loading..."));
 	gtk_style_context_add_class (gtk_widget_get_style_context (GTK_WIDGET (loading_label)), "dim-label");
-	gtk_stack_add_named (place_holder, GTK_WIDGET (loading_label), "Spinner");
+	gtk_stack_add_named (priv->place_holder, GTK_WIDGET (loading_label), "spinner");
 	GtkLabel *no_songs_label = GTK_LABEL (gtk_label_new ("No songs found..."));
 	gtk_style_context_add_class (gtk_widget_get_style_context (GTK_WIDGET (no_songs_label)), "dim-label");
 	gtk_label_set_line_wrap_mode (no_songs_label, PANGO_WRAP_WORD_CHAR);
-	gtk_stack_add_named (place_holder, GTK_WIDGET (no_songs_label), "No-entries");
+	gtk_stack_add_named (priv->place_holder, GTK_WIDGET (no_songs_label), "No-entries");
 	
 	GtkBox *error_box = GTK_BOX (gtk_box_new (GTK_ORIENTATION_VERTICAL, 12));
 	GtkLabel *error_label = GTK_LABEL (gtk_label_new (""));
@@ -101,7 +102,14 @@ louder_song_list_add_place_holder ()
 	gtk_label_set_line_wrap (error_label, TRUE);
 	GtkButton *retry_button = GTK_BUTTON (gtk_button_new_with_label ("Retry"));
 	gtk_widget_set_halign (GTK_WIDGET (retry_button), GTK_ALIGN_START);
-	
+	gtk_container_add (GTK_CONTAINER (error_box), GTK_WIDGET (error_label));
+	gtk_container_add (GTK_CONTAINER (error_box), GTK_WIDGET (retry_button));
+	gtk_stack_add_named (priv->place_holder, GTK_WIDGET (error_box), "Error");
+	gtk_stack_set_visible_child_name (priv->place_holder, "spinner");
+	gtk_widget_show_all (GTK_WIDGET (priv->place_holder));
+	gtk_widget_set_halign (GTK_WIDGET (priv->place_holder), GTK_ALIGN_CENTER);
+	gtk_widget_set_valign (GTK_WIDGET (priv->place_holder), GTK_ALIGN_CENTER);
+	gtk_list_box_set_placeholder (GTK_LIST_BOX (self), GTK_WIDGET (priv->place_holder));
 }
 
 static void
@@ -117,5 +125,5 @@ louder_song_list_box_class_init (LouderSongListBoxClass *klass)
 static void
 louder_song_list_box_init (LouderSongListBox *self)
 {
-//	louder_song_list_add_place_holder();
+	louder_song_list_add_place_holder(self);
 }

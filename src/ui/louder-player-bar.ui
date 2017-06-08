@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.20.0 -->
+<interface>
+	<requires lib="gtk+" version="3.10"/> 
+	<template class="LouderPlayerBar" parent="GtkBox">
+		<property name="orientation">horizontal</property>
+		<property name="visible">True</property>
+		<property name="can_focus">False</property>
+		<child>
+			<object class="GtkEventBox" id="album_art_event_box">
+				<property name="visible_window">False</property>
+				<child>
+					<object class="GtkImage" id="album_art_button">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<style>
+							<class name="icon_padding"/>
+						</style>
+					</object>
+				</child>
+			</object>
+			<packing>
+				<property name="expand">False</property>
+				<property name="fill">False</property>
+				<property name="position">0</property>
+			</packing>
+		</child>
+		<child>
+			<object class="GtkEventBox" id="previous_event_box">
+				<property name="visible_window">False</property>
+				<child>
+					<object class="GtkImage" id="previous_button">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<style>
+							<class name="icon_padding"/>
+						</style>
+					</object>
+				</child>
+			</object>
+			<packing>
+				<property name="expand">False</property>
+				<property name="fill">False</property>
+				<property name="position">1</property>
+			</packing>
+		</child>
+		<child>
+			<object class="GtkEventBox" id="play_pause_event_box">
+				<property name="visible_window">False</property>
+				<child>
+					<object class="GtkImage" id="play_pause_button">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<style>
+							<class name="icon_padding"/>
+						</style>
+					</object>
+				</child>
+			</object>
+			<packing>
+				<property name="expand">False</property>
+				<property name="fill">False</property>
+				<property name="position">2</property>
+			</packing>
+		</child>
+		<child>
+			<object class="GtkEventBox" id="next_event_box">
+				<property name="visible_window">False</property>
+				<child>
+					<object class="GtkImage" id="next_button">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<style>
+							<class name="icon_padding"/>
+						</style>
+					</object>
+				</child>
+			</object>
+			<packing>
+				<property name="expand">False</property>
+				<property name="fill">False</property>
+				<property name="position">3</property>
+			</packing>
+		</child>
+		<child>
+			<object class="GtkEventBox" id="repeat_event_box">
+				<property name="visible_window">False</property>
+				<child>
+					<object class="GtkImage" id="repeat_button">
+						<property name="visible">True</property>
+						<property name="can_focus">False</property>
+						<style>
+							<class name="icon_padding"/>
+						</style>
+					</object>
+				</child>
+			</object>
+			<packing>
+				<property name="expand">False</property>
+				<property name="fill">False</property>
+				<property name="position">4</property>
+			</packing>
+		</child>
+		<child>
+			<object class="GtkHScale" id="scrobber">
+				<property name="visible">True</property>
+				<property name="can_focus">True</property>
+				<property name="draw-value">False</property>
+				<property name="adjustment">adjustment1</property>
+			</object>	
+			<packing>
+				<property name="expand">True</property>
+				<property name="fill">True</property>
+				<property name="position">5</property>
+			</packing>
+		</child>
+	</template>
+  <object class="GtkPopover" id="album_art_popover">
+    <property name="relative-to">album_art_event_box</property>
+    <property name="position">top</property>
+		<style>
+      <class name="messagepopover"/>
+		</style>
+		<child>
+			<object class="GtkImage" id="album_art_big">
+        <property name="visible">true</property>
+			</object>
+		</child>
+	</object>
+	<object class="GtkAdjustment" id="adjustment1">
+    <property name="upper">100</property>
+    <property name="step_increment">0.1000001</property>
+    <property name="page_increment">1</property>
+  </object>
+</interface>
