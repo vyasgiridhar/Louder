@@ -26,14 +26,14 @@ struct _LouderSongListRow
 
 typedef struct
 {
-	LouderAvatarWidget *avatar;
-	GtkWidget          *song_label;
-	GtkWidget          *song_time;
-	GtkWidget          *like_button;
-	GtkWidget          *options_button;
-	GtkWidget          *options_popover;
+	GtkWidget          *song_art;
+	GtkWidget          *play_button;
+	GtkWidget          *song_artist;
+	GtkWidget          *song_name;
+	GtkWidget          *song_event;
+	GtkWidget          *actions_revealer;
 	
-//	SCSong             *song;
+//SCSong             *song;
 } LouderSongListRowPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (LouderSongListRow, louder_song_list_row, GTK_TYPE_LIST_BOX_ROW)

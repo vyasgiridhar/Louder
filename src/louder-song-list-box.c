@@ -75,10 +75,10 @@ louder_song_list_box_set_property (GObject      *object,
 	LouderSongListBox *self = LOUDER_SONG_LIST_BOX (object);
 
 	switch (prop_id)
-	  {
+	{
 	  default:
 	    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-	  }
+	}
 }
 
 static void
@@ -110,6 +110,7 @@ louder_song_list_add_place_holder (LouderSongListBox *self)
 	gtk_widget_set_halign (GTK_WIDGET (priv->place_holder), GTK_ALIGN_CENTER);
 	gtk_widget_set_valign (GTK_WIDGET (priv->place_holder), GTK_ALIGN_CENTER);
 	gtk_list_box_set_placeholder (GTK_LIST_BOX (self), GTK_WIDGET (priv->place_holder));
+
 }
 
 static void

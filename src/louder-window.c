@@ -158,6 +158,6 @@ louder_window_init (LouderWindow *self)
 	AddListItem (priv->sidebar_menu);
 	AddListItem (priv->sidebar_menu);
 	gtk_window_set_title (GTK_WINDOW (self), "Louder");
-	gtk_paned_set_position (GTK_PANED (priv->menu_panel), 300);
+	gtk_paned_set_position (GTK_PANED (priv->menu_panel), 250);
 	gtk_widget_show_all (GTK_WIDGET (self));
 }
