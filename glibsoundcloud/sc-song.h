@@ -1,4 +1,4 @@
-/* async-image-widget.h
+/* sc-song.h
  *
  * Copyright (C) 2017 Vyas Giridharan <vyasgiridhar27@gmail.com>
  *
@@ -16,22 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LOUDER_AVATAR_WIDGET_H
-#define LOUDER_AVATAR_WIDGET_H
+#ifndef SC_SONG_H
+#define SC_SONG_H
 
-#include <gtk/gtk.h>
-#include <cairo.h>
-#include <libsoup/soup.h>
+#include <glib-object.h>
 
 G_BEGIN_DECLS
 
-#define LOUDER_TYPE_AVATAR_WIDGET (louder_avatar_widget_get_type())
+#define SC_TYPE_SONG (sc_song_get_type())
 
-G_DECLARE_FINAL_TYPE (LouderAvatarWidget, louder_avatar_widget, LOUDER, AVATAR_WIDGET, GtkImage)
+G_DECLARE_FINAL_TYPE (ScSong, sc_song, SC, SONG, GObject)
 
-LouderAvatarWidget *louder_avatar_widget_new (gchar *url);
+ScSong *sc_song_new (void);
 
 G_END_DECLS
 
-#endif /* LOUDER_AVATAR_WIDGET_H */
+#endif /* SC_SONG_H */
 

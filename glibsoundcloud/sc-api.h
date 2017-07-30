@@ -1,4 +1,4 @@
-/* async-image-widget.h
+/* sc-api.h
  *
  * Copyright (C) 2017 Vyas Giridharan <vyasgiridhar27@gmail.com>
  *
@@ -16,22 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LOUDER_AVATAR_WIDGET_H
-#define LOUDER_AVATAR_WIDGET_H
+#ifndef SC_API_H
+#define SC_API_H
 
-#include <gtk/gtk.h>
-#include <cairo.h>
-#include <libsoup/soup.h>
+#include <glib-object.h>
 
 G_BEGIN_DECLS
 
-#define LOUDER_TYPE_AVATAR_WIDGET (louder_avatar_widget_get_type())
+#define SOUNDCLOUD_DEFAULT_HOST "https://api.soundcloud.com"
 
-G_DECLARE_FINAL_TYPE (LouderAvatarWidget, louder_avatar_widget, LOUDER, AVATAR_WIDGET, GtkImage)
+#define SC_TYPE_API (sc_api_get_type())
 
-LouderAvatarWidget *louder_avatar_widget_new (gchar *url);
+G_DECLARE_FINAL_TYPE (ScApi, sc_api, SC, API, GObject)
+
+ScApi *sc_api_new (void);
 
 G_END_DECLS
 
-#endif /* LOUDER_AVATAR_WIDGET_H */
+#endif /*SC_API_H */
 
